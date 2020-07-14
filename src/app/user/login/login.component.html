@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Rentforcement</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/src/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/src/assets/fonts/iconic/css/material-design-iconic-font.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="login.component.util.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="login.component.main.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="login.component.css"> -->
+</head>
+<body>
+	<div class="loginbox">
+		<link rel="stylesheet" type="text/css" href="login.component.css">
+		<h1 align="center">Login @RentForcement</h1>
+
+		<div class="checkLoginFailed" *ngIf="loginFailed==1">
+			Invalid Credentials. Please Try Again!
+		</div>
+		<br>
+	
+		Username or email address
+		<div class="validate-message" *ngIf="flag1==1 || userLogin.credential==''">
+			<p>Please fill in this field!</p>
+		</div>
+		<div *ngIf="flag1==0 || userLogin.credential!=''">
+		</div>
+		<input 
+			type="text" 
+			name="username"
+			placeholder="Enter username or email address"
+			[(ngModel)]="userLogin.credential"
+			ngModel maxlength="10">
+		<br><br>
+	
+		Password
+		<div class="validate-message" *ngIf="flag2==1 || userLogin.password==''">
+			<p>Please fill in this field!</p>
+		</div>
+		<div *ngIf="flag2==0 || userLogin.password!=''">
+		</div>
+		<input 
+			type="password" 
+			name="password"
+			placeholder="Enter password"
+			[(ngModel)]="userLogin.password">	
+	
+	
+		<br>
+		
+		<input 
+			type="submit" 
+			name="login" 
+			value="Sign in"  
+			(click)="sendLoginCredentials($event, userLogin.credential, userLogin.password)">
+	
+		<!-- <p> <a href="#"> Forgot Password? </a></p> -->
+		<div class="LoginMessage">
+			<p><a routerLink="/signup" routerLinkActive="active">Don't have an Account? Sign Up Here!</a></p>
+		</div>
+		
+		<br>
+
+	</div>
+
+	<div class="animation-area">
+    
+	</div>
+
+
+</body>
+</html>
+
+<router-outlet></router-outlet>

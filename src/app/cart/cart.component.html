@@ -1,0 +1,25 @@
+<h3>Products in cart!</h3>
+
+<div class="Message" *ngIf="errorFlag==1">
+    <p>Error in fetching products!</p> 
+</div>
+
+<div class="Message" *ngIf="prodLength==0; else elseBlock">
+    <p>Your Cart is Empty!</p>
+</div>
+<ng-template #elseBlock>
+    <div *ngFor="let product of products">
+        {{ product.name }} &nbsp;&nbsp; 
+        {{ product.price }} &nbsp;&nbsp; 
+        <button (click)="removeFromCart($event, product)">Remove from cart</button>
+        <br><br>
+    </div>
+    <h3>Cart Total: {{ totalSum | currency:'INR' }}</h3>
+    <button (click)="checkout($event)">Proceed to Checkout</button>
+</ng-template>
+
+<button (click)="backToHome($event)">Back to Home</button>
+
+<br><br>
+<!-- <router-outlet></router-outlet> -->
+

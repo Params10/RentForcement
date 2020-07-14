@@ -1,0 +1,16 @@
+<container-element [ngSwitch] = "selector">
+    <app-product-addition-form *ngSwitchCase= "1"  
+    (newFormEvent) = "getProductDetailsFromChild($event)"  
+    [product] = "product"></app-product-addition-form>
+
+    <app-product-addition-image *ngSwitchCase= "2" 
+    (imageEvent) = "getImageFilesFromChild($event)"
+    (backEvent) = "imageChildEventHandler($event)"
+    (finalConfirmation) = "uploadProduct($event)"
+    [file] = "file"></app-product-addition-image>
+
+    
+</container-element>
+<br><br>
+
+<h3>{{msg}}</h3>

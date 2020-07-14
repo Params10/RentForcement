@@ -1,0 +1,49 @@
+<h1>RentForcement Dashboard</h1>
+
+<div class = "leftbox">
+    <a (click)="goToListByCategory(1)">All</a><br>
+    <a (click)="goToListByCategory(2)">Clothes</a><br>
+    <a (click)="goToListByCategory(3)">Electronics</a><br>
+    <a (click)="goToListByCategory(4)">Household</a><br>
+    <a (click)="goToListByCategory(5)">Games</a><br>
+    <a (click)="goToListByCategory(6)">Industrial</a><br>
+    <a (click)="goToListByCategory(7)">Books</a><br>
+    <a (click)="goToListByCategory(8)">Other</a><br>    
+</div>
+
+<container-element  class = "middlebox" [ngSwitch]="selector">
+    <app-product-list [category]="category" [toggle]="toggle" *ngSwitchCase="1"></app-product-list>
+    <app-product-details [id]="id" *ngSwitchCase="2"></app-product-details>
+    <app-product-addition *ngSwitchCase="3"></app-product-addition>
+    <app-product-updation [id]="id" *ngSwitchCase="4"></app-product-updation>
+</container-element>
+
+<div class = "rightbox">
+    <a (click)="goToAddProduct()">Add</a><br>
+    <br>
+    
+    <div class="ViewOrders">
+        <a (click)="fetchOrders()">View Your Orders</a>
+    </div>
+
+    <div class="ViewCart">
+        <a (click)="fetchCart()">View your Cart</a>
+    </div>
+
+    <br><br>
+    <div class="Signin" *ngIf="session==0; else elseBlock">
+        <button routerLink="/login" routerLinkActive="active">Sign In</button>
+    </div>
+    <ng-template #elseBlock>
+        Hello @{{ currUser }}
+        <br><br>
+        <p>View Your Products</p>
+        <label class="switch">
+            <input type="checkbox" [(ngModel)] = "toggle" name="checkbox"  (click) = "displayToggle($event.target.value)">
+            <span class="slider round"></span>
+        </label>
+        <br><br>
+        <button (click)="closeSession($event)">Sign Out</button>
+    </ng-template>
+
+</div>
